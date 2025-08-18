@@ -4,53 +4,53 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+        imports =
+                [ (modulesPath + "/profiles/qemu-guest.nix")
+                ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+        boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+        boot.initrd.kernelModules = [ ];
+        boot.kernelModules = [ ];
+        boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/05150c32-6d01-4d2e-8415-0d064ddaf1d1";
-      fsType = "ext4";
-    };
+        fileSystems."/" =
+                { device = "/dev/disk/by-uuid/05150c32-6d01-4d2e-8415-0d064ddaf1d1";
+                        fsType = "ext4";
+                };
 
-  fileSystems. "/mnt/Backup" = {
-    device = "//192.168.4.26/public/Backup";
-    fsType = "cifs";
-    options = let
-      baseOpts = [
-      "rw"
-      "uid=1000"
-      "gid=100"
-      "credentials=/etc/nixos/smb-secrets"
-      "nofail"
-    ];
-    automountOpts = [
-       "noauto"
-       "x-systemd.automount"
-       "x-systemd.idle-timeout=60"
-       "x-systemd.device-timeout=5s"
-    ];
-   in baseOpts ++ automountOpts;
+        fileSystems. "/mnt/Backup" = {
+                device = "//192.168.4.26/public/Backup";
+                fsType = "cifs";
+                options = let
+                        baseOpts = [
+                                "rw"
+                                "uid=1000"
+                                "gid=100"
+                                "credentials=/etc/nixos/smb-secrets"
+                                "nofail"
+                        ];
+                        automountOpts = [
+                                "noauto"
+                                "x-systemd.automount"
+                                "x-systemd.idle-timeout=60"
+                                "x-systemd.device-timeout=5s"
+                        ];
+                in baseOpts ++ automountOpts;
 
-};
+        };
 
         fileSystems. "/Media" = {
                 device = "/dev/disk/by-uuid/58073354-916a-40f7-9b35-99e5ab87edf9";
                 fsType = "ext4";
         };
-  swapDevices = [ ];
+        swapDevices = [ ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
+        # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+        # (the default) this is the recommended approach. When using systemd-networkd it's
+        # still possible to use this option, but it's recommended to use it in conjunction
+        # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+        networking.useDHCP = lib.mkDefault true;
+        # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+        nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
