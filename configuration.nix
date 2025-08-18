@@ -14,14 +14,19 @@
         boot.loader.grub.enable = true;
         boot.loader.grub.device = "/dev/sda";
         boot.loader.grub.useOSProber = true;
-        boot.kernelModules = ["cifs"];
 
         networking.hostName = "nixos-server"; # Define your hostname.
-        # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
         programs.zsh.enable = true;
-        # Configure network proxy if necessary
-        # networking.proxy.default = "http://user:password@proxy:port/";
-        # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+
+        # Enable BBR congestion control
+        boot.kernelModules = [ "tcp_bbr" "cifs" ]; # Enables BBR
+        boot.kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr"; # Enables  BBR
+        boot.kernel.sysctl."net.core.default_qdisc" = "fq"; # Sets QOS to fair queueing for outbound traffic
+        boot.kernel.sysctl."net.core.wmem_max" = 1073741824; # 1 GiB
+        boot.kernel.sysctl."net.core.rmem_max" = 1073741824; # 1 GiB
+        boot.kernel.sysctl."net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
+        boot.kernel.sysctl."net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
 
         services.cron = {
                 enable = true;
@@ -79,7 +84,6 @@
                 variant = "";
         };
 
-        # Define a user account. Don't forget to set a password with ‘passwd’.
 
         # Allow unfree packages
         nixpkgs.config.allowUnfree = true;
@@ -106,15 +110,7 @@
                 git
         ];
 
-        # Some programs need SUID wrappers, can be configured further or are
-        # started in user sessions.
-        # programs.mtr.enable = true;
-        # programs.gnupg.agent = {
-        #   enable = true;
-        #   enableSSHSupport = true;
-        # };
 
-        # List services that you want to enable:
 
         # Enable the OpenSSH daemon.
         services.openssh.enable = true;
