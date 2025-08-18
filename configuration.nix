@@ -28,6 +28,12 @@
         boot.kernel.sysctl."net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
         boot.kernel.sysctl."net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
 
+        nix.gc = {
+                automatic = true;
+                dates = "Mon 15:30";
+                options = "--delete-older-than 20d";
+        };
+
         services.cron = {
                 enable = true;
                 systemCronJobs = [
