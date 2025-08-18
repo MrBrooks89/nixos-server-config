@@ -28,11 +28,23 @@
         boot.kernel.sysctl."net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
         boot.kernel.sysctl."net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
 
+
+        # Enable automatic garbage collection
         nix.gc = {
                 automatic = true;
                 dates = "Mon 15:30";
                 options = "--delete-older-than 20d";
         };
+
+        # Enable automatic storage optimization
+        nix.optimise = {
+                automatic = true;
+                dates = "Mon 15:30";
+        };
+
+        # Enable automatic deduplication of the Nix store
+        nix.settings.auto-optimise-store = true;
+
 
         services.cron = {
                 enable = true;
