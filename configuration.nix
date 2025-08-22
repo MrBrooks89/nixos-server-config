@@ -49,8 +49,8 @@
         services.cron = {
                 enable = true;
                 systemCronJobs = [
-                        # Runs at 2am daily as root
-                        "0 2 * * 5 mrbrooks /home/mrbrooks/backup_to_nas.sh"
+                        # Runs at 2am every Friday as mrbrooks
+                        "0 2 * * 5 root bash /home/mrbrooks/backup_to_nas.sh"
                 ];
         };
 
