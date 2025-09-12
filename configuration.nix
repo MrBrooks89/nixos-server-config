@@ -57,7 +57,7 @@
         services.cloudflared = {
                 enable = true;
                 tunnels = {
-                        "MyHomeLab" = {
+                        "HomeLab" = {
                                 ingress = {
                                         "glance.mrbrooks.tech" = {
                                                 service = "http://192.168.6.30:8084";
@@ -69,8 +69,11 @@
                                         "jellyfin.mrbrooks.tech" = {
                                                 service = "http://192.168.6.30:8096";
                                         };
+                                        "ssh.mrbrooks.tech" = {
+                                                service = "ssh://192.168.6.30:22";
+                                        };
                                 };
-                                credentialsFile = "/home/mrbrooks/.cloudflared/ffbd7ed1-a4e1-4827-af7c-6011587d31d4.json";
+                                credentialsFile = "/home/mrbrooks/.cloudflared/0bcf4c56-d7de-4308-a62d-21cd005c1ab5.json";
                                 default = "http_status:404";
                         };
                 };
