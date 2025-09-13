@@ -70,7 +70,16 @@
                                                 service = "http://192.168.6.30:8096";
                                         };
                                         "ssh.mrbrooks.tech" = {
-                                                service = "ssh://192.168.6.30:22";
+                                                service = "ssh://localhost:22";
+                                                originRequest = { proxyType = ""; };
+                                        };
+                                        "portainer.mrbrooks.tech" = {
+                                                service = "https://192.168.6.30:9443";
+                                                originRequest = { noTLSVerify = true; };
+                                        };
+                                        "sophos.mrbrooks.tech" = {
+                                                service = "https://192.168.6.1:4444";
+                                                originRequest = { noTLSVerify = true; };
                                         };
                                 };
                                 credentialsFile = "/home/mrbrooks/.cloudflared/0bcf4c56-d7de-4308-a62d-21cd005c1ab5.json";
