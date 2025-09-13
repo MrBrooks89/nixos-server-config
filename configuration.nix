@@ -81,6 +81,10 @@
                                                 service = "https://192.168.6.1:4444";
                                                 originRequest = { noTLSVerify = true; };
                                         };
+                                        "proxmox.mrbrooks.tech" = {
+                                                service = "https://192.168.4.25:8006";
+                                                originRequest = { noTLSVerify = true; };
+                                        };
                                 };
                                 credentialsFile = "/home/mrbrooks/.cloudflared/0bcf4c56-d7de-4308-a62d-21cd005c1ab5.json";
                                 default = "http_status:404";
