@@ -85,6 +85,12 @@
                                                 service = "https://192.168.4.25:8006";
                                                 originRequest = { noTLSVerify = true; };
                                         };
+                                        # "cas.mrbrooks.tech" = {
+                                        #         service = "http://localhost:5001";
+                                        # };
+                                        # "cas-api.mrbrooks.tech" = {
+                                        #         service = "http://localhost:5001";
+                                        # };
                                 };
                                 credentialsFile = "/home/mrbrooks/.cloudflared/0bcf4c56-d7de-4308-a62d-21cd005c1ab5.json";
                                 default = "http_status:404";
