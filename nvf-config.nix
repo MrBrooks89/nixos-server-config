@@ -8,7 +8,17 @@
                         vim = {
                                 viAlias = false;
                                 vimAlias = true;
-                                lsp.enable = true;
+                                lsp = {
+                                        enable = true;
+                                        formatOnSave = true;
+                                        lspkind.enable = false;
+                                        lightbulb.enable = true;
+                                        lspsaga.enable = false;
+                                        trouble.enable = true;
+                                        lspSignature.enable = true;
+                                        otter-nvim.enable = true;
+                                        nvim-docs-view.enable = true;
+                                };
 
                                 languages = {
                                         enableFormat = true;
@@ -42,7 +52,7 @@
                                 spellcheck = {
                                         enable = true;
                                 };
-      
+
                                 binds = {
                                         whichKey.enable = true;
                                         cheatsheet.enable = true;
@@ -61,7 +71,7 @@
                                                 lazygit.enable = true;
                                         };
                                 };
-
+   
                                 ui = {
                                         borders.enable = true;
                                         noice.enable = true;
@@ -88,7 +98,9 @@
                                         nvim-cursorline.enable = true;
                                         cinnamon-nvim.enable = true;
                                         fidget-nvim.enable = true;
-                                        cellular-automaton.enable = true;
+                                        highlight-undo.enable = true;
+                                        indent-blankline.enable = true;
+                                        cellular-automaton.enable = false;
                                 };
 
                                 statusline = {
@@ -152,6 +164,16 @@
 
                                 presence = {
                                         neocord.enable = false;
+                                };
+
+                                assistant = {
+                                        chatgpt.enable = false;
+                                        copilot = {
+                                                enable = false;
+                                                cmp.enable = true;
+                                        };
+                                        codecompanion-nvim.enable = false;
+                                        avante-nvim.enable = true;
                                 };
 
                                 utility = {
