@@ -119,7 +119,18 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = "nix-command flakes";
+
+  # Enable Docker
   virtualisation.docker.enable = true;
+
+  # Enable Vscode server
+  services.openvscode-server.enable = true;
+
+  # Enable nix-ld-rs to run non-nix executables
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld-rs;
+  };
 
   # List packages installed in system profile. To search, run:
   users = {
@@ -128,7 +139,7 @@
       mrbrooks = {
         isNormalUser = true;
         description = "MrBrooks";
-        extraGroups = ["networkmanager" "wheel" "docker"];
+        extraGroups = ["networkmanager" "wheel" "docker" "vscode-server"];
       };
     };
   };
