@@ -7,7 +7,7 @@
     enable = true;
     settings = {
       vim = {
-        viAlias = false;
+        viAlias = true;
         vimAlias = true;
         lsp = {
           enable = true;
@@ -16,9 +16,13 @@
           lightbulb.enable = true;
           lspsaga.enable = false;
           trouble.enable = true;
-          lspSignature.enable = true;
-          otter-nvim.enable = true;
-          nvim-docs-view.enable = true;
+        };
+
+        highlight = {
+          Visual = {
+            bg = "#44475a";
+            fg = "NONE";
+          };
         };
 
         languages = {
@@ -29,6 +33,7 @@
           python.enable = true;
           bash.enable = true;
           go.enable = true;
+          rust.enable = true;
         };
 
         filetree.neo-tree.enable = true;
@@ -37,8 +42,6 @@
         treesitter.context.enable = true;
         autopairs.nvim-autopairs.enable = true;
         snippets.luasnip.enable = true;
-        projects.project-nvim.enable = true;
-        options.wrap = false;
 
         keymaps = [
           {
@@ -47,6 +50,20 @@
             action = "<Esc>";
             silent = true;
             noremap = true;
+          }
+          {
+            key = "y";
+            mode = "v";
+            action = "\"+y";
+            noremap = true;
+            silent = true;
+          }
+          {
+            key = "<leader>H";
+            mode = "n";
+            action = ":let bar = repeat('#', 60) | call append(line('.') - 1, bar) | call append(line('.'), bar)<CR>";
+            noremap = true;
+            silent = true;
           }
         ];
 
@@ -107,20 +124,15 @@
         statusline = {
           lualine = {
             enable = true;
-            theme = "catppuccin";
+            theme = "dracula";
           };
         };
 
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "mocha";
+          name = "dracula";
+          style = "night";
           transparent = false;
-        };
-
-        autocomplete = {
-          nvim-cmp.enable = true;
-          blink-cmp.enable = false;
         };
 
         tabline = {
@@ -145,7 +157,6 @@
           obsidian.enable = false;
           neorg.enable = false;
           orgmode.enable = false;
-          mind-nvim.enable = true;
           todo-comments.enable = true;
         };
 
@@ -168,11 +179,21 @@
         assistant = {
           chatgpt.enable = false;
           copilot = {
-            enable = false;
-            cmp.enable = true;
+            enable = true;
+            cmp.enable = false;
+            setupOpts = {
+              suggestion = {
+                enabled = true;
+                auto_trigger = true;
+                debounce = 75;
+              };
+            };
           };
-          codecompanion-nvim.enable = false;
-          avante-nvim.enable = true;
+        };
+
+        autocomplete = {
+          nvim-cmp.enable = false;
+          blink-cmp.enable = true;
         };
 
         utility = {
@@ -180,22 +201,13 @@
           vim-wakatime.enable = false;
           diffview-nvim.enable = true;
           yanky-nvim.enable = false;
-          icon-picker.enable = true;
-          surround.enable = true;
-          leetcode-nvim.enable = true;
-          multicursors.enable = true;
-          smart-splits.enable = true;
-          undotree.enable = true;
-          nvim-biscuits.enable = true;
 
           motion = {
             hop.enable = true;
             leap.enable = true;
-            precognition.enable = true;
           };
           images = {
             image-nvim.enable = false;
-            img-clip.enable = true;
           };
         };
       };
