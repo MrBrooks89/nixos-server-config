@@ -80,6 +80,9 @@
             service = "https://192.168.4.25:8006";
             originRequest = {noTLSVerify = true;};
           };
+          "adguard.mrbrooks.tech" = {
+            service = "http://192.168.4.1:8080";
+          };
         };
         credentialsFile = "/home/mrbrooks/.cloudflared/0bcf4c56-d7de-4308-a62d-21cd005c1ab5.json";
         default = "http_status:404";
