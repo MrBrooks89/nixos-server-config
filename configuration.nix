@@ -125,7 +125,7 @@
   virtualisation.docker.enable = true;
 
   # Enable Vscode server
-  services.openvscode-server.enable = true;
+  services.openvscode-server.enable = false;
 
   # Enable nix-ld-rs to run non-nix executables
   programs.nix-ld = {
